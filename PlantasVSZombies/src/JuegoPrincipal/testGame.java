@@ -5,6 +5,7 @@
  */
 package JuegoPrincipal;
 import java.util.*;
+import NPC.*;
 
 /**
  *
@@ -16,14 +17,18 @@ public class testGame {
     
     public static void main (String[] args) {
         
-        // Se instancia un nuevo tablero con el tamaño especifico y las stats a 0
-        Tablero tableroJuego = new Tablero(4,5);
-        boolean play = true;
         
-        // Se pinta por primera vez el tablero de juego
+        boolean play = true;
+        Tablero tableroJuego = new Tablero(7,5, "imposible");
         
         
         while (play) {
+            
+            boolean saleZombieC = tableroJuego.saleZombie(tableroJuego.getTurnoZombies(), tableroJuego.getTurno());
+            
+            if(saleZombieC) {
+                tableroJuego.instanciarZombie();
+            } 
             
             tableroJuego.pintarTablero();
             boolean turno = true;
@@ -36,6 +41,31 @@ public class testGame {
                 String comando = entradaUsuarioValores[0];
                 
                 switch(comando) {
+                case "n":
+                    if (entradaUsuarioValores[3].matches("f") || entradaUsuarioValores[3].matches("m") || entradaUsuarioValores[3].matches("a") || entradaUsuarioValores[3].matches("i")) {
+                        String dificultad = "";
+                        switch(entradaUsuarioValores[3]) {
+                            case "f": 
+                                dificultad = "facil";
+                                break;
+                            case "m":
+                                dificultad = "media";
+                                break;
+                            case "a":
+                                dificultad = "alta";
+                                break;
+                            case "i":
+                                dificultad = "imposible";
+                                break;
+                        }
+
+                        tableroJuego = new Tablero(Integer.parseInt(entradaUsuarioValores[1]),Integer.parseInt(entradaUsuarioValores[2]),dificultad);
+                        turno = false;
+                    } else {
+                        System.out.println("La dificultad introducida no existe");
+                    }
+
+                    break;
                 case "l":
                     tableroJuego.colocarLanzaGuisantes(Integer.parseInt(entradaUsuarioValores[1]), Integer.parseInt(entradaUsuarioValores[2]));
                     break;
@@ -54,13 +84,31 @@ public class testGame {
                     play = false;
                     turno = false;
                     break;
+                default:
+                    System.out.println("El comando no existe o está mal escrito");
+                    break;
                 }
             }
-            
+            // Acciones Repetitivas
             tableroJuego.setSoles(tableroJuego.getnGirasoles()*10);
+            tableroJuego.dispararLanzaGuisantes();
+            tableroJuego.moverZombies();
             tableroJuego.setPuedeColocarLanzaGuisantes(true);
             tableroJuego.setPuedeColocarGirasol(true);
-                        
+            
+            // Revisa Acciones de Victoria
+            if(tableroJuego.getnZombies() == tableroJuego.getZombiesMatados()){
+                    tableroJuego.pintarTablero();
+                    play = false;
+                    System.out.println("¡¡HAN GANADO LAS PLANTAS!!"); 
+                }
+            for (Zombie z : tableroJuego.getlZombie()) {
+                if (z.getPosCol() == 0) {
+                    tableroJuego.pintarTablero();
+                    play = false;
+                    System.out.println("¡¡HAN GANADO LOS ZOMBIES!!");
+                } 
+            }    
         }
         
     }

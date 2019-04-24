@@ -34,18 +34,22 @@ public class Casilla {
     public void setNpc(NPC npc) {
         this.npc = npc;
     }
-    
+    /**
+    *Se muestra la casilla del tablero determinada
+    *@param None
+    *@return String
+    * */
     @Override
     public String toString() {
         String casillaString = "    |";
         
         if (this.ocupado) {
             if (this.npc instanceof Zombie) {
-                casillaString = String.format("Z(%d)|", this.npc.getVida());
+                casillaString = String.format("Z(%d)|", this.npc.getVida()+1);
             } else if (this.npc instanceof LanzaGuisantes) {
-                casillaString = String.format("L(%d)|", this.npc.getVida());
+                casillaString = String.format("L(%d)|", this.npc.getVida()+1);
             } else if (this.npc instanceof Girasol) {
-                casillaString = String.format("G(%d)|", this.npc.getVida());
+                casillaString = String.format("G(%d)|", this.npc.getVida()+1);
             } else {
                 casillaString = "O()|";
             }

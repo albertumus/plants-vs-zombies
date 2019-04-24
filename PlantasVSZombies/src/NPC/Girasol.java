@@ -12,15 +12,12 @@ package NPC;
 public class Girasol extends Planta implements PlantaInterface {    
     
     public Girasol() {
-        super(1, 20, 10, 0);
+        super(0, 20, 10, 0);
     }
     
-    public void accion() {
+    public void accion(Zombie z) {
         
     }
-    
-    public void colocar() {
-        
-    }
+   
     
 }

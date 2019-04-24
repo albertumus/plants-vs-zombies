@@ -11,14 +11,46 @@ package NPC;
  */
 public class Zombie extends Enemigo implements EnemigoInterface {
     
-    public Zombie() {
-        super(5,1,1);
-    }     
+    boolean moverC;
+    int posCol; 
+    int posFil;
+    
+    public Zombie(boolean moverC, int posCol, int posFil) {
+        super(4,1,1);
+        this.moverC = moverC;
+        this.posFil = posFil;
+        this.posCol = posCol;
+    }   
+
+    public int getPosFil() {
+        return posFil;
+    }
+
+    public void setPosFil(int posFil) {
+        this.posFil = posFil;
+    }
+
+    public int getPosCol() {
+        return posCol;
+    }
+
+    public void setPosCol(int posCol) {
+        this.posCol = posCol;
+    }
+
+    public boolean isMoverC() {
+        return moverC;
+    }
+
+    public void setMoverC(boolean moverC) {
+        this.moverC = moverC;
+    }
+    
     public void mover() {
         
     }
-    public void atacar() {
-        
+    public void atacar(NPC p) {
+        p.setVida(-1);
     }
     
     public void aparecer() {

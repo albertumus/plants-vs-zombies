@@ -21,7 +21,7 @@ public class NPC {
     }
 
     public void setVida(int vida) {
-        this.vida = vida;
+        this.vida += vida;
     }
    
 }

@@ -12,6 +12,10 @@ package NPC;
 public interface EnemigoInterface {
     
     public void mover();
-    public void atacar();
-    public void aparecer();
+    /**
+    *Se ataca a una planta
+    *@param None
+    *@return None
+    * */
+    public void atacar(NPC p);
 }

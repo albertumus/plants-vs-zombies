@@ -10,9 +10,14 @@ package NPC;
  * @author admin
  */
 interface PlantaInterface {
+
     
-    public void colocar();
-    public void accion();
+    /**
+    *Se realiza la accion determinada de la clase
+    *@param None
+    *@return None
+    * */
+    public void accion(Zombie Z);
     
 }
 
