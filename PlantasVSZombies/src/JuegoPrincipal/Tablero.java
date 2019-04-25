@@ -6,7 +6,7 @@
 package JuegoPrincipal;
 import NPC.*;
 import java.util.*;
-
+import java.lang.*;
 /**
  *
  * @author admin
@@ -220,21 +220,25 @@ public class Tablero {
     *@return None
     * */
     public void colocarGirasol(int fil, int col) {
-        if (this.soles >= 20 && this.puedeColocarGirasol && col != this.cols-1) {
-            if (!this.casillasTablero[fil][col].isOcupado()) {
-               Girasol g = new Girasol();
-               this.casillasTablero[fil][col].setOcupado(true);
-               this.casillasTablero[fil][col].setNpc(g);
-               this.soles -= 20;
-               this.nGirasoles += 1;
-               this.puedeColocarGirasol = false;
-               repartoZombies();
-               this.pintarTablero();
+        try {
+            if (this.soles >= 20 && this.puedeColocarGirasol && col != this.cols-1) {
+                if (!this.casillasTablero[fil][col].isOcupado()) {
+                   Girasol g = new Girasol();
+                   this.casillasTablero[fil][col].setOcupado(true);
+                   this.casillasTablero[fil][col].setNpc(g);
+                   this.soles -= 20;
+                   this.nGirasoles += 1;
+                   this.puedeColocarGirasol = false;
+                   repartoZombies();
+                   this.pintarTablero();
+                } else {
+                    throw new PlantaExpception("No puedes colocar un Girasol");
+                }
             } else {
-                System.out.println("No puedes colocar un Girasol");
-            }
-        } else {
-          System.out.println("No puedes colocar un Lanza Guisantes");  
+              throw new PlantaExpception("No puedes colocar un Girasol");
+            }  
+        } catch (PlantaExpception e) {
+           System.out.println(e);
         }
     }
         /**
@@ -244,6 +248,7 @@ public class Tablero {
     *@return None
     * */
     public void colocarLanzaGuisantes(int fil, int col) {
+        try {
         if (this.soles >= 50 && this.puedeColocarLanzaGuisantes && col != this.cols-1) {
              if (!this.casillasTablero[fil][col].isOcupado()) {
                LanzaGuisantes l = new LanzaGuisantes(fil);
@@ -254,10 +259,13 @@ public class Tablero {
                this.puedeColocarLanzaGuisantes = false;
                this.pintarTablero();
             } else {
-                System.out.println("No puedes colocar un Lanza Guisantes");
+                throw new PlantaExpception("No puedes colocar un LanzaGuisantes");
             }
         } else {
-          System.out.println("No puedes colocar un Lanza Guisantes");  
+            throw new PlantaExpception("No puedes colocar un LanzaGuisantes");
+        }
+        } catch (PlantaExpception e) {
+            System.out.println(e);
         }
     }
     /**
@@ -371,13 +379,24 @@ public class Tablero {
         }
         return saleZombieC;
     }
+    
+    public int zombiesaInstanciar() {
+        int numeroZombies = 0;
+        for (int i : this.turnoZombies) {
+            if(this.turno == i ) {
+                numeroZombies +=1;
+            }
+        }
+        
+        return numeroZombies;
+    }
+    
     /**
     *Se mueve el zombie o ataca
     *@param None
     *@return None
     * */
     public void moverZombies() {
-        
         if (this.lZombie.size()>=1) {
             for (Zombie z : this.lZombie) {
                 int posZFil = z.getPosFil();
