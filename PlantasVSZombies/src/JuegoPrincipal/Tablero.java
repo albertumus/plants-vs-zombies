@@ -6,6 +6,7 @@
 package JuegoPrincipal;
 import NPC.*;
 import java.util.*;
+import java.io.*;
 /**
  *
  * @author admin
@@ -30,14 +31,16 @@ public class Tablero {
     // Condiciones para la colocacion
     private boolean puedeColocarGirasol;
     private boolean puedeColocarLanzaGuisantes;
+    private boolean puedeColocarNuez;
     
-    public Tablero(int cols, int fils, String dificultad) {
-        this.cols = cols;
-        this.fils = fils;
+    public Tablero(String dificultad) {
+        this.cols = 7;
+        this.fils = 7;
         this.dificultad = dificultad;
         this.soles = 50;
         this.puedeColocarGirasol = true;
         this.puedeColocarLanzaGuisantes = true;
+        this.puedeColocarNuez = true;
         this.nZombies = this.setZombiesDificultad();
         this.lZombie = new ArrayList<Zombie>();
         this.lLanzaGuisantes = new ArrayList<LanzaGuisantes>();
@@ -98,6 +101,14 @@ public class Tablero {
     public int getZombiesMatados() {
 
         return ZombiesMatados;
+    }
+
+    public int getTurnoInificialZombies() {
+        return turnoInificialZombies;
+    }
+
+    public void setTurnoInificialZombies(int turnoInificialZombies) {
+        this.turnoInificialZombies = turnoInificialZombies;
     }
 
     public void setZombiesMatados(int ZombiesMatados) {
@@ -177,6 +188,14 @@ public class Tablero {
         this.lLanzaGuisantes = lLanzaGuisantes;
     }
 
+    public boolean isPuedeColocarNuez() {
+        return puedeColocarNuez;
+    }
+
+    public void setPuedeColocarNuez(boolean puedeColocarNuez) {
+        this.puedeColocarNuez = puedeColocarNuez;
+    }
+
 
     public int getnZombies() {
         return nZombies;
@@ -212,6 +231,28 @@ public class Tablero {
 "        S: Salir de la aplicación.\n" +
 "        <Enter> (Ahora 'E'): Pasar Turno\n";
     }
+    
+    public void colocarNuez(int fil, int col) {
+        try {
+            if (this.soles >= 50 && this.puedeColocarNuez && col != this.cols-1) {
+                if (!this.casillasTablero[fil][col].isOcupado()) {
+                   Nuez n = new Nuez();
+                   this.casillasTablero[fil][col].setOcupado(true);
+                   this.casillasTablero[fil][col].setNpc(n);
+                   this.soles -= 50;
+                   this.puedeColocarNuez = false;
+                   this.pintarTablero();
+                } else {
+                    throw new PlantaExpception("No puedes colocar una Nuez");
+                }
+            } else {
+              throw new PlantaExpception("No puedes colocar una Nuez");
+            }  
+        } catch (PlantaExpception e) {
+           System.out.println(e);
+        }
+    }
+    
     /**
     *Coloca un gorasol en una posicion determinada siempre que se pueda
     *@param int => Posicion dentro de los limites del tablero
@@ -427,29 +468,22 @@ public class Tablero {
     *@param None
     *@return None
     * */
-    public void pintarTablero() {
-        System.out.println("(Teclear ayuda para lista de comandos. <Enter> para terminar el turno.");
-        System.out.println("> N " + this.cols + " " + this.fils + " " + this.dificultad);
+    public String pintarTablero() {
+        
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter, true);
         
         for(int i = 0; i<this.fils; i++) {
-            System.out.print("\n|");
-            for(int k=1;k<(this.cols*5);k++){
-            System.out.print("-");
-            }
-            System.out.println("|");
-            System.out.print("|");
+            writer.println("|--------------------------|");
+            writer.print("| ");
             for(int j = 0; j<this.cols; j++) {
-                System.out.print(this.casillasTablero[i][j].toString());
+                writer.print(this.casillasTablero[i][j].toString());
             }
-            System.out.print("<- Zombies coming...");
+            writer.println("");
         }
-        System.out.print("\n|");
-        for(int k=1;k<(this.cols*5);k++){
-            System.out.print("-");
-        }
-        System.out.println("|");
-        System.out.println("Tienes " + this.soles + " soles y es el turno " + this.turno);
-        System.out.println("(Teclear ayuda para lista de comandos. <Enter> para terminar el turno.)");
+        writer.println("|--------------------------|");
+        
+        return stringWriter.toString();
     }
 }
    

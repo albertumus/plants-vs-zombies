@@ -19,8 +19,8 @@ public class testGame {
         
         
         boolean play = true;
-        Tablero tableroJuego = new Tablero(0,0,"facil");
-        boolean crearNuevoTablero = false;
+        Tablero tableroJuego = new Tablero("imposible");
+        /*boolean crearNuevoTablero = false;
         while(!crearNuevoTablero) {
             try {
             System.out.print("Teclea el tamaño de filas deseado: ");
@@ -54,12 +54,12 @@ public class testGame {
                                 System.out.println(e);
                     }
                 }
-            tableroJuego = new Tablero(Integer.parseInt(filsOriginal),Integer.parseInt(colsOriginal),dificultad);
+            tableroJuego = new Tablero(dificultad);
             crearNuevoTablero = true;
             } catch(Exception e) {
                 System.out.println(e);
             }
-        }
+        }*/
 
 
         while (play) {
@@ -72,7 +72,7 @@ public class testGame {
                 }   
             }
             
-            tableroJuego.pintarTablero();
+            System.out.println(tableroJuego.pintarTablero());
             boolean turno = true;
             while (turno) {
                 System.out.print("Teclea el comando deseado: ");
@@ -101,7 +101,7 @@ public class testGame {
                                         break;
                                 }
 
-                                tableroJuego = new Tablero(Integer.parseInt(entradaUsuarioValores[1]),Integer.parseInt(entradaUsuarioValores[2]),dificultad);
+                                tableroJuego = new Tablero(dificultad);
                                 turno = false;
                             } else {
                                 throw new ExcepcionJuego("La dificultad introducida no existe");

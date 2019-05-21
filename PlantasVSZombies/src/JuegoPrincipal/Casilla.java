@@ -50,6 +50,8 @@ public class Casilla {
                 casillaString = String.format("L(%d)|", this.npc.getVida()+1);
             } else if (this.npc instanceof Girasol) {
                 casillaString = String.format("G(%d)|", this.npc.getVida()+1);
+            } else if (this.npc instanceof Nuez) {
+                casillaString = String.format("N(%d)|", this.npc.getVida()+1);
             } else {
                 casillaString = "O()|";
             }
