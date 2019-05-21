@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package presentacion;
-
+import java.io.*;
 /**
  *
  * @author admin
@@ -16,10 +16,13 @@ public class ResultadoPartida extends javax.swing.JDialog {
     private static int soles;
     private static int ngirasoles;
     private static int puntuacion;
+    private static int nlanzaGuisantes;
+    private static String dificultad;
     /**
      * Creates new form ResultadoPartida
      */
-    public ResultadoPartida(java.awt.Frame parent, boolean modal, String mensaje, String resultado, int soles, int ngirasoles) {
+    public ResultadoPartida(java.awt.Frame parent, boolean modal, String mensaje, String resultado, int soles, 
+            int ngirasoles, int numeroLanzaGuisantes, String dificultad) {
         super(parent, modal);
         initComponents();
         
@@ -27,18 +30,44 @@ public class ResultadoPartida extends javax.swing.JDialog {
         this.resultado = resultado;
         this.soles = soles;
         this.ngirasoles = ngirasoles;
+        this.nlanzaGuisantes = numeroLanzaGuisantes;
         
         mensajeLabel.setText(mensaje);
         resultadoLabel.setText(resultado);
         
-        if (resultado.equals("Victoria")) {
-            puntuacion = soles + ngirasoles*20;
+        if (resultado.equals("Victoria") || resultado.equals("Derrota")) {
+            puntuacion = soles + ngirasoles*20 + numeroLanzaGuisantes*50;
             puntuacionLabel.setText("Puntuacion: "  + puntuacion);
-
-        }
-        
+           
+            añadirPuntuacion(puntuacion, dificultad);
+        } 
         
         this.setVisible(true);
+    }
+    
+    public void añadirPuntuacion(int Puntuacion, String dificultad) {
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        String rutaFichero = "./Ranking/ranking" + dificultad + ".txt";
+        try {
+            fichero = new FileWriter(rutaFichero, true);
+            pw = new PrintWriter(fichero);
+
+            
+            pw.println("alberto_" + puntuacion);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
     }
 
     /**
@@ -151,7 +180,7 @@ public class ResultadoPartida extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ResultadoPartida dialog = new ResultadoPartida(new javax.swing.JFrame(), true, mensaje, resultado, soles, ngirasoles);
+                ResultadoPartida dialog = new ResultadoPartida(new javax.swing.JFrame(), true, mensaje, resultado, soles, ngirasoles, nlanzaGuisantes, dificultad);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

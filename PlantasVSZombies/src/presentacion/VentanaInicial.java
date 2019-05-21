@@ -56,6 +56,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         jScrollPane1.setViewportView(dificultadList);
 
         rankingButton.setText("Ranking Partida");
+        rankingButton.setActionCommand("Ranking Partidas");
         rankingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rankingButtonActionPerformed(evt);

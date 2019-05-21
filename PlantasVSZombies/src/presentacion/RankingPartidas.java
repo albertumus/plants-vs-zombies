@@ -5,20 +5,123 @@
  */
 package presentacion;
 
+import static java.awt.image.ImageObserver.WIDTH;
+import java.io.*;
+import java.util.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author admin
  */
 public class RankingPartidas extends javax.swing.JDialog {
-
+    
+    public static ArrayList<String> partidasGanadasFacil;
+    public static ArrayList<String> partidasGanadasMedio;
+    public static ArrayList<String> partidasGanadasDificil;
+    public static ArrayList<String> partidasGanadasImposible;
+  
     /**
      * Creates new form RankingPartidas
      */
     public RankingPartidas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.partidasGanadasFacil = new  ArrayList<String>();
+        this.partidasGanadasMedio = new  ArrayList<String>();;
+        this.partidasGanadasDificil = new  ArrayList<String>();;
+        this.partidasGanadasImposible = new  ArrayList<String>();;
+        
+        leerArchivo("facil", this.partidasGanadasFacil);
+        leerArchivo("media", this.partidasGanadasMedio );
+        leerArchivo("dificil", this.partidasGanadasDificil);
+        leerArchivo("imposible", this.partidasGanadasImposible);
+
+        
+        for (String f : this.partidasGanadasFacil) {
+           String nombre = f.split("_")[0];
+           String puntos = f.split("_")[1];
+           this.facilField.append(nombre + " - " + puntos + "\n");
+        }
+        
+        for (String f : this.partidasGanadasMedio) {
+           String nombre = f.split("_")[0];
+           String puntos = f.split("_")[1];
+           this.medioField.append(nombre + " - " + puntos + "\n");
+        }
+        
+        for (String f : this.partidasGanadasDificil) {
+           String nombre = f.split("_")[0];
+           String puntos = f.split("_")[1];
+           this.dificilField.append(nombre + " - " + puntos + "\n");
+        }
+                
+        for (String f : this.partidasGanadasImposible) {
+           String nombre = f.split("_")[0];
+           String puntos = f.split("_")[1];
+           this.imposibleField.append(nombre + " - " + puntos + "\n");
+        }
+                
+                
         
         this.setVisible(true);
+    }
+    
+    public void mostrarArray(ArrayList partidas) {
+        for(int i=0;i<partidas.size();i++) {
+            System.out.println(partidas.get(i));
+        }
+    }
+   
+    public void guardarMejoresPartidas(ArrayList partidas, String linea) {
+        String menor = "";
+        int pMenor = 0;
+        
+        if (partidas.size() < 5) {
+            partidas.add(linea);
+        } else {
+            int puntuacionActual = Integer.valueOf(linea.split("_")[1]);
+            
+            for(int i=0;i<partidas.size();i++) {
+                
+                int puntuacion = Integer.valueOf(partidas.get(i).toString().split("_")[1]);
+                
+                if(i==0) {
+                    menor = partidas.get(i).toString();
+                    pMenor = Integer.valueOf(partidas.get(i).toString().split("_")[1]);
+                }
+                
+                if (puntuacion < pMenor) {
+                    menor = partidas.get(i).toString();
+                    pMenor = puntuacion;
+                    
+                }
+            }
+            int valorLinea = Integer.valueOf(linea.split("_")[1]);
+            if(valorLinea > pMenor) {
+                int pos = partidas.indexOf(menor);                
+                partidas.set(pos, linea);
+                }
+        }
+    }
+    
+    public void leerArchivo(String dificultad, ArrayList partidas) {
+        String rutaFichero = "./Ranking/ranking" + dificultad + ".txt";
+        try {
+            File archivo = new File(rutaFichero);
+            FileReader fr = new FileReader (archivo);
+            BufferedReader br = new BufferedReader(fr); 
+            
+            String linea;
+            while((linea=br.readLine())!=null) {
+                guardarMejoresPartidas(partidas, linea);
+            }
+        } catch(Exception e){
+         e.printStackTrace();
+         String mensaje = "Fichero de partidas " + dificultad + " no encontrado";
+         JOptionPane.showMessageDialog(this, mensaje, "Error", WIDTH);
+        }  
     }
 
     /**
@@ -31,30 +134,131 @@ public class RankingPartidas extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dificilField = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        facilField = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        medioField = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        imposibleField = new javax.swing.JTextArea();
+        salirButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Top 5 Facil");
+
+        jLabel2.setText("Top 5 Media");
+
+        jLabel3.setText("Top 5 Dificil");
+
+        jLabel4.setText("Top 5 Imposible");
+
+        dificilField.setEditable(false);
+        dificilField.setColumns(20);
+        dificilField.setRows(5);
+        dificilField.setAutoscrolls(false);
+        jScrollPane1.setViewportView(dificilField);
+
+        facilField.setEditable(false);
+        facilField.setColumns(20);
+        facilField.setRows(5);
+        facilField.setAutoscrolls(false);
+        jScrollPane2.setViewportView(facilField);
+
+        medioField.setEditable(false);
+        medioField.setColumns(20);
+        medioField.setRows(5);
+        medioField.setAutoscrolls(false);
+        jScrollPane3.setViewportView(medioField);
+
+        imposibleField.setEditable(false);
+        imposibleField.setColumns(20);
+        imposibleField.setRows(5);
+        imposibleField.setAutoscrolls(false);
+        jScrollPane4.setViewportView(imposibleField);
+
+        salirButton.setText("Salir");
+        salirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(119, 119, 119))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addComponent(salirButton))
+                    .addComponent(jLabel4))
+                .addGap(194, 194, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(53, 53, 53)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(587, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel1)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(salirButton)
+                                .addGap(31, 31, 31)))))
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(58, 58, 58)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(198, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_salirButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,6 +303,18 @@ public class RankingPartidas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea dificilField;
+    private javax.swing.JTextArea facilField;
+    private javax.swing.JTextArea imposibleField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea medioField;
+    private javax.swing.JButton salirButton;
     // End of variables declaration//GEN-END:variables
 }

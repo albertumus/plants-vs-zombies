@@ -136,18 +136,41 @@ public class ColocarPlanta extends javax.swing.JDialog {
             
             int filaPos = Integer.valueOf(fila.getText()) ;
             int columnaPos = Integer.valueOf(columna.getText());
+            
+            if(tableroJuego.getCasillasTablero()[filaPos][columnaPos].isOcupado()) {
+                String mensaje = "No puedes colocar aqui una planta";
+                JOptionPane.showMessageDialog(this, mensaje, "Error", WIDTH);
+                this.dispose();
+            }
 
             String eleccionPlanta = plantasList.getSelectedValue();
 
             switch(eleccionPlanta) {
                 case "Girasol":
-                    tableroJuego.colocarGirasol(filaPos, columnaPos);
+                    if (tableroJuego.getSoles() >= 20 && tableroJuego.isPuedeColocarGirasol()) {
+                        tableroJuego.colocarGirasol(filaPos, columnaPos);   
+                    } else {
+                        String mensaje = "No puedes colocar un girasol";
+                        JOptionPane.showMessageDialog(this, mensaje, "Error", WIDTH);    
+                    }
+                    
                     break;
                 case "Lanzaguisantes":
-                    tableroJuego.colocarLanzaGuisantes(filaPos, columnaPos);
+                    if (tableroJuego.getSoles() >= 50 && tableroJuego.isPuedeColocarLanzaGuisantes()){
+                     tableroJuego.colocarLanzaGuisantes(filaPos, columnaPos);   
+                    } else {
+                        String mensaje = "No puedes colocar un lanzaguisantes";
+                        JOptionPane.showMessageDialog(this, mensaje, "Error", WIDTH);    
+                    }
                     break;
                 case "Nuez":
-                    tableroJuego.colocarNuez(filaPos, columnaPos);
+                    if (tableroJuego.getSoles() >= 50 && tableroJuego.isPuedeColocarNuez()) {
+                     tableroJuego.colocarNuez(filaPos, columnaPos);   
+                    }  else {
+                        String mensaje = "No puedes colocar una nuez";
+                        JOptionPane.showMessageDialog(this, mensaje, "Error", WIDTH);    
+                    }
+                    
                     break;
             }
 

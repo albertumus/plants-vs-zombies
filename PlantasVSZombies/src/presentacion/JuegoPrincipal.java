@@ -73,10 +73,11 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         dificultadLabel.setText("Dificultad");
 
         tableroLabel.setEditable(false);
-        tableroLabel.setColumns(20);
+        tableroLabel.setColumns(15);
         tableroLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         tableroLabel.setRows(2);
-        tableroLabel.setAutoscrolls(false);
+        tableroLabel.setFocusable(false);
+        tableroLabel.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(tableroLabel);
 
         turnoLabel.setText("Turno:");
@@ -141,18 +142,21 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                     .addComponent(dificultadLabel)
                     .addComponent(turnoLabel)
                     .addComponent(solesLabel))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addComponent(turnoButton)
                         .addGap(18, 18, 18)
                         .addComponent(girasolButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(253, 253, 253)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comandosButton)
-                            .addComponent(salirButton))))
-                .addContainerGap())
+                            .addComponent(salirButton))
+                        .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -196,27 +200,30 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             turnoLabel.setText("Turno: " + String.valueOf(tableroJuego.getTurno()));
             
             // Revisa Acciones de Victoria
-            if(tableroJuego.getnZombies() == tableroJuego.getZombiesMatados()){
+            if(tableroJuego.getnZombies() == tableroJuego.getZombiesMatados() && !tableroJuego.isTerminado()){
+                    tableroJuego.setTerminado(true);
                     tableroLabel.setText(tableroJuego.pintarTablero());
                     String mensaje = "¡¡HAN GANADO LAS PLANTAS!!";
                     ResultadoPartida r = new ResultadoPartida(this, true, mensaje, "Victoria", tableroJuego.getSoles(), 
-                            tableroJuego.getnGirasoles());
+                            tableroJuego.getnGirasoles(), tableroJuego.getlLanzaGuisantes().size(), tableroJuego.getDificultad());
                     this.dispose();
                 }
-            if(tableroJuego.getlZombie().size() == 0 && tableroJuego.getTurno() > 30){
+            if(tableroJuego.getlZombie().size() == 0 && tableroJuego.getTurno() > 30 && !tableroJuego.isTerminado()){
+                    tableroJuego.setTerminado(true);
                     tableroLabel.setText(tableroJuego.pintarTablero());
                     String mensaje = "¡¡HAN GANADO LAS PLANTAS!!";
                     ResultadoPartida r = new ResultadoPartida(this, true, mensaje, "Victoria", tableroJuego.getSoles(), 
-                            tableroJuego.getnGirasoles());
+                            tableroJuego.getnGirasoles(), tableroJuego.getlLanzaGuisantes().size(), tableroJuego.getDificultad());
                     this.dispose();
                     
                 }
-            for (Zombie z : tableroJuego.getlZombie()) {
-                if (z.getPosCol() == 0) {
+            for (Zombie z : tableroJuego.getlZombie() ) {
+                if (z.getPosCol() == 0 && !tableroJuego.isTerminado()) {
+                    tableroJuego.setTerminado(true);
                     tableroLabel.setText(tableroJuego.pintarTablero());
                     String mensaje = "¡¡HAN GANADO LOS ZOMBIES!!";
                     ResultadoPartida r = new ResultadoPartida(this, true, mensaje, "Derrota", tableroJuego.getSoles(), 
-                            tableroJuego.getnGirasoles());
+                            tableroJuego.getnGirasoles(), tableroJuego.getlLanzaGuisantes().size(), tableroJuego.getDificultad());
                     this.dispose();
                 } 
             }

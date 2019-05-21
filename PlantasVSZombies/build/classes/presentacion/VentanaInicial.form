@@ -100,6 +100,7 @@
     <Component class="javax.swing.JButton" name="rankingButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ranking Partida"/>
+        <Property name="actionCommand" type="java.lang.String" value="Ranking Partidas"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rankingButtonActionPerformed"/>

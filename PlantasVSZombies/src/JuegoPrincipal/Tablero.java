@@ -23,10 +23,14 @@ public class Tablero {
     private ArrayList<Zombie> lZombie;
     private int nGirasoles;
     private int nZombies;
+    private int nCarabucos;
+    private int CarabucosInstanciados = 0;
+    private int CarabucosMatados = 0;
     private int ZombiesInstanciados = 0;
     private int ZombiesMatados = 0;
     private int[] turnoZombies;
     private int turnoInificialZombies;
+    private boolean terminado;
     
     // Condiciones para la colocacion
     private boolean puedeColocarGirasol;
@@ -34,6 +38,7 @@ public class Tablero {
     private boolean puedeColocarNuez;
     
     public Tablero(String dificultad) {
+        this.terminado = false;
         this.cols = 7;
         this.fils = 7;
         this.dificultad = dificultad;
@@ -76,23 +81,35 @@ public class Tablero {
         } 
         return turnoInicial;
     }
+
+    public boolean isTerminado() {
+        return terminado;
+    }
+
+    public void setTerminado(boolean terminado) {
+        this.terminado = terminado;
+    }
     
     public int setZombiesDificultad() {
         int numeroZombies = 0;
         switch(dificultad) {
             case "facil":
                 numeroZombies = 5;
+                this.nCarabucos = 0;
                 break;
             case "media":
-                numeroZombies = 15;
+                numeroZombies = 10;
+                this.nCarabucos = 5;
                 break;
                 
             case "dificil":
-                numeroZombies = 25;
+                numeroZombies = 15;
+                this.nCarabucos = 10;
                 break;
                 
             case "imposible":
-                numeroZombies = 50;
+                numeroZombies = 30;
+                this.nCarabucos = 20;
                 break;
         } 
         return numeroZombies;
