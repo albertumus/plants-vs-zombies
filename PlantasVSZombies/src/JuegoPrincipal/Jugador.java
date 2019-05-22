@@ -16,6 +16,7 @@ public class Jugador implements Serializable {
     
     public String nombre;
     public String dni;
+    public String contraseña;
     public int partidasJugadas;
     public int partidasPerdidas;
     public ArrayList<Integer> partidasGanadasFacil;
@@ -23,9 +24,10 @@ public class Jugador implements Serializable {
     public ArrayList<Integer> partidasGanadasDificil;
     public ArrayList<Integer> partidasGanadasImposible;
     
-    public Jugador(String nombre, String dni) {
+    public Jugador(String nombre, String dni, String contraseña) {
         this.nombre = nombre;
         this.dni = dni;
+        this.contraseña = contraseña;
         this.partidasJugadas = 0;
         this.partidasPerdidas = 0;
         this.partidasGanadasFacil = new ArrayList<Integer>();
@@ -48,6 +50,14 @@ public class Jugador implements Serializable {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public int getPartidasPerdidas() {

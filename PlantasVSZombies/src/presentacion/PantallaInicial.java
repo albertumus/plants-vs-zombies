@@ -5,19 +5,65 @@
  */
 package presentacion;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.HashMap;
+import JuegoPrincipal.*;
+import static java.awt.image.ImageObserver.WIDTH;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author admin
  */
 public class PantallaInicial extends javax.swing.JFrame {
+    
+    public static HashMap<String, Jugador> jugadoresRegistrados;
+    public static File jugadoresCarpeta = new File("./Jugadores/");
+    public static File[] listaFicheros = jugadoresCarpeta.listFiles();
 
     /**
      * Creates new form PantallaInicial
      */
     public PantallaInicial() {
         initComponents();
+        
+        this.jugadoresRegistrados = new HashMap<String, Jugador>();
+        leerJugadoresRegistrados();
+            
+        
     }
 
+    public void leerJugadoresRegistrados(){
+        for (File file : listaFicheros) {
+            if (file.isFile()) {
+                System.out.println(file.getName());
+                Jugador j = (Jugador) leerArchivo("./Jugadores/"+file.getName()); 
+                this.jugadoresRegistrados.put(j.getNombre(), j);
+        }
+}
+
+    }
+    public Object leerArchivo(String filepath) {
+ 
+        try {
+ 
+            FileInputStream fileIn = new FileInputStream(filepath);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+ 
+            Object obj = objectIn.readObject();
+ 
+            objectIn.close();
+            return obj;
+ 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,8 +75,14 @@ public class PantallaInicial extends javax.swing.JFrame {
 
         LoginButton = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
-        dniInput = new javax.swing.JTextField();
+        constraseñaInput = new javax.swing.JTextField();
         nombreInput = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        recuperarCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +93,7 @@ public class PantallaInicial extends javax.swing.JFrame {
             }
         });
 
+        RegisterButton.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         RegisterButton.setText("Registrarse");
         RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,39 +101,104 @@ public class PantallaInicial extends javax.swing.JFrame {
             }
         });
 
-        dniInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        dniInput.setText("DNI");
+        constraseñaInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        constraseñaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                constraseñaInputActionPerformed(evt);
+            }
+        });
 
         nombreInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nombreInput.setText("Nombre");
+
+        jLabel1.setText("¿Aún no estás registrado?");
+
+        jLabel2.setText("Contraseña:");
+
+        jLabel3.setText("Nombre de Usuario:");
+
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("¿No recuerdas tu contraseña o nombre de usuario?");
+
+        recuperarCuenta.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        recuperarCuenta.setText("Recuperar Cuenta");
+        recuperarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recuperarCuentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nombreInput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dniInput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(228, 228, 228))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(242, 242, 242))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(constraseñaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreInput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(193, 193, 193))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(177, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(LoginButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(RegisterButton)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                        .addGap(247, 247, 247))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(RegisterButton)
+                        .addGap(230, 230, 230))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(recuperarCuenta)
+                        .addGap(114, 114, 114)
+                        .addComponent(jButton1)
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(212, 212, 212))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(142, 142, 142))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
-                .addComponent(dniInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombreInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoginButton)
-                    .addComponent(RegisterButton))
-                .addGap(87, 87, 87))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(constraseñaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LoginButton)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RegisterButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(recuperarCuenta)))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -88,11 +206,53 @@ public class PantallaInicial extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
+        String nombreUsuario = this.nombreInput.getText();
+        String contraseñaUsuario = this.constraseñaInput.getText();
+        
+        if(jugadoresRegistrados.containsKey(nombreUsuario)) {
+            if(jugadoresRegistrados.get(nombreUsuario).getContraseña().equals(contraseñaUsuario)) {          
+                String mensaje = "Te has logeado correctamente";
+                JOptionPane.showMessageDialog(this, mensaje, "AVISO", WIDTH);
+                VentanaInicial ventanaInicial = new VentanaInicial(jugadoresRegistrados.get(nombreUsuario));
+            } else {
+                String mensaje = "Contraseña incorrecta";
+                JOptionPane.showMessageDialog(this, mensaje, "AVISO", WIDTH); 
+            }
+        } else {
+                String mensaje = "El nombre de usuario no se encuentra registrado";
+                JOptionPane.showMessageDialog(this, mensaje, "AVISO", WIDTH); 
+        }
+        
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         // TODO add your handling code here:
+        Registro r = new Registro(this, true, this.getJugadoresRegistrados());
+        listaFicheros = jugadoresCarpeta.listFiles();
+        leerJugadoresRegistrados();
     }//GEN-LAST:event_RegisterButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void recuperarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recuperarCuentaActionPerformed
+        // TODO add your handling code here:
+        RecuperarCuenta rc = new RecuperarCuenta(this,true,this.getJugadoresRegistrados());
+    }//GEN-LAST:event_recuperarCuentaActionPerformed
+
+    private void constraseñaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_constraseñaInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_constraseñaInputActionPerformed
+
+    public static HashMap<String, Jugador> getJugadoresRegistrados() {
+        return jugadoresRegistrados;
+    }
+
+    public static void setJugadoresRegistrados(HashMap<String, Jugador> jugadoresRegistrados) {
+        PantallaInicial.jugadoresRegistrados = jugadoresRegistrados;
+    }
 
     /**
      * @param args the command line arguments
@@ -132,7 +292,13 @@ public class PantallaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;
     private javax.swing.JButton RegisterButton;
-    private javax.swing.JTextField dniInput;
+    private javax.swing.JTextField constraseñaInput;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nombreInput;
+    private javax.swing.JButton recuperarCuenta;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
  */
 package presentacion;
 import java.io.*;
+import JuegoPrincipal.Jugador;
 /**
  *
  * @author admin
@@ -18,15 +19,17 @@ public class ResultadoPartida extends javax.swing.JDialog {
     private static int puntuacion;
     private static int nlanzaGuisantes;
     private static String dificultad;
+    private static Jugador j;
     /**
      * Creates new form ResultadoPartida
      */
     public ResultadoPartida(java.awt.Frame parent, boolean modal, String mensaje, String resultado, int soles, 
-            int ngirasoles, int numeroLanzaGuisantes, String dificultad) {
+            int ngirasoles, int numeroLanzaGuisantes, String dificultad, Jugador j) {
         super(parent, modal);
         initComponents();
         
         this.mensaje = mensaje;
+        this.j = j;
         this.resultado = resultado;
         this.soles = soles;
         this.ngirasoles = ngirasoles;
@@ -35,7 +38,7 @@ public class ResultadoPartida extends javax.swing.JDialog {
         mensajeLabel.setText(mensaje);
         resultadoLabel.setText(resultado);
         
-        if (resultado.equals("Victoria") || resultado.equals("Derrota")) {
+        if (resultado.equals("Victoria")) {
             puntuacion = soles + ngirasoles*20 + numeroLanzaGuisantes*50;
             puntuacionLabel.setText("Puntuacion: "  + puntuacion);
            
@@ -54,7 +57,7 @@ public class ResultadoPartida extends javax.swing.JDialog {
             pw = new PrintWriter(fichero);
 
             
-            pw.println("alberto_" + puntuacion);
+            pw.println(j.getNombre()+ "_" + puntuacion);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,7 +183,7 @@ public class ResultadoPartida extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ResultadoPartida dialog = new ResultadoPartida(new javax.swing.JFrame(), true, mensaje, resultado, soles, ngirasoles, nlanzaGuisantes, dificultad);
+                ResultadoPartida dialog = new ResultadoPartida(new javax.swing.JFrame(), true, mensaje, resultado, soles, ngirasoles, nlanzaGuisantes, dificultad, j);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
