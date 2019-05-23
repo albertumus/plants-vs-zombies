@@ -7,6 +7,7 @@ package presentacion;
 
 import JuegoPrincipal.*;
 import NPC.*;
+import java.awt.Color;
 import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 
@@ -24,7 +25,7 @@ public class ColocarPlanta extends javax.swing.JDialog {
     public ColocarPlanta(java.awt.Frame parent, boolean modal, Tablero tableroJuego) {
         super(parent, modal);
         initComponents();
-        
+        this.getContentPane().setBackground(Color.white);
         this.tableroJuego = tableroJuego;
         
         this.setVisible(true);
@@ -49,6 +50,7 @@ public class ColocarPlanta extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        plantasList.setBackground(new java.awt.Color(146, 191, 48));
         plantasList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Girasol", "Lanzaguisantes", "Nuez" };
             public int getSize() { return strings.length; }
@@ -57,6 +59,7 @@ public class ColocarPlanta extends javax.swing.JDialog {
         plantasList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(plantasList);
 
+        fila.setBackground(new java.awt.Color(146, 191, 48));
         fila.setColumns(3);
         fila.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +67,7 @@ public class ColocarPlanta extends javax.swing.JDialog {
             }
         });
 
+        columna.setBackground(new java.awt.Color(146, 191, 48));
         columna.setColumns(3);
         columna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +79,7 @@ public class ColocarPlanta extends javax.swing.JDialog {
 
         jLabel2.setText("Columna");
 
+        colocarButton.setBackground(new java.awt.Color(146, 191, 48));
         colocarButton.setText("Colocar");
         colocarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -21,9 +21,11 @@ public class Tablero {
     private Casilla[][] casillasTablero;
     private ArrayList<LanzaGuisantes> lLanzaGuisantes;
     private ArrayList<Zombie> lZombie;
+    private ArrayList<Carabuco> lCarabuco;
     private int nGirasoles;
     private int nZombies;
     private int nCarabucos;
+    private ArrayList<Integer> turnoCarabucos;
     private int CarabucosInstanciados = 0;
     private int CarabucosMatados = 0;
     private int ZombiesInstanciados = 0;
@@ -48,6 +50,7 @@ public class Tablero {
         this.puedeColocarNuez = true;
         this.nZombies = this.setZombiesDificultad();
         this.lZombie = new ArrayList<Zombie>();
+        this.lCarabuco = new ArrayList<Carabuco>();
         this.lLanzaGuisantes = new ArrayList<LanzaGuisantes>();
         this.turno = 0;
         this.nGirasoles = 0;
@@ -59,6 +62,34 @@ public class Tablero {
                 this.casillasTablero[i][j] = new Casilla();
             }
         }
+        this.turnoCarabucos = new ArrayList<Integer>();
+         switch(this.dificultad) {
+             
+             case "facil":
+                 break;
+
+            case "media":
+                this.turnoCarabucos.add(6);
+                this.turnoCarabucos.add(10);
+                this.turnoCarabucos.add(17);
+                break;            
+            case "dificil":
+                this.turnoCarabucos.add(6);
+                this.turnoCarabucos.add(10);
+                this.turnoCarabucos.add(17);
+                this.turnoCarabucos.add(20);
+                this.turnoCarabucos.add(25);
+                break;
+            case "imposible":
+                this.turnoCarabucos.add(6);
+                this.turnoCarabucos.add(10);
+                this.turnoCarabucos.add(17);
+                this.turnoCarabucos.add(20);
+                this.turnoCarabucos.add(22);
+                this.turnoCarabucos.add(25);
+                this.turnoCarabucos.add(29);
+                break;
+         }
          
     }
     public int turnoInicialZombies() {
@@ -82,6 +113,16 @@ public class Tablero {
         return turnoInicial;
     }
 
+    public ArrayList<Integer> getTurnoCarabucos() {
+        return turnoCarabucos;
+    }
+
+    public void setTurnoCarabucos(ArrayList<Integer> turnoCarabucos) {
+        this.turnoCarabucos = turnoCarabucos;
+    }
+
+
+
     public boolean isTerminado() {
         return terminado;
     }
@@ -89,27 +130,31 @@ public class Tablero {
     public void setTerminado(boolean terminado) {
         this.terminado = terminado;
     }
+
+    public ArrayList<Carabuco> getlCarabuco() {
+        return lCarabuco;
+    }
+
+    public void setlCarabuco(ArrayList<Carabuco> lCarabuco) {
+        this.lCarabuco = lCarabuco;
+    }
     
     public int setZombiesDificultad() {
         int numeroZombies = 0;
         switch(dificultad) {
             case "facil":
                 numeroZombies = 5;
-                this.nCarabucos = 0;
                 break;
             case "media":
                 numeroZombies = 10;
-                this.nCarabucos = 5;
                 break;
                 
             case "dificil":
                 numeroZombies = 15;
-                this.nCarabucos = 10;
                 break;
                 
             case "imposible":
                 numeroZombies = 30;
-                this.nCarabucos = 20;
                 break;
         } 
         return numeroZombies;
@@ -351,6 +396,17 @@ public class Tablero {
                     }
                     
                     enc = true;
+                } else if (this.casillasTablero[fila][posCol].isOcupado() & this.casillasTablero[fila][posCol].getNpc() instanceof Carabuco){
+                    System.out.println("carabuco encontrado");
+                    if (this.casillasTablero[fila][posCol].getNpc().getVida() > 0) {
+                        this.casillasTablero[fila][posCol].getNpc().setVida(-1);   
+                    } else {
+                        this.lCarabuco.remove(this.casillasTablero[fila][posCol].getNpc());
+                        System.out.println("Has madado un Carabuco");
+                        this.casillasTablero[fila][posCol].setOcupado(false); 
+                        this.casillasTablero[fila][posCol].setNpc(null);                
+                    }
+                    enc = true;
                 }
                 posCol++;
             }
@@ -380,6 +436,25 @@ public class Tablero {
                 this.casillasTablero[posFil][this.cols-1].setNpc(z);
                 this.ZombiesInstanciados += 1;
                 this.lZombie.add(z);
+                i = this.fils+99;
+            }
+            i++;        
+        }
+    }
+    
+        public void instanciarCarabuco() {
+        int posFil = (int)(Math.random()*(this.fils));
+        int i = 0;
+        
+        while (i < this.fils) {
+            
+            if (!this.casillasTablero[posFil][this.cols-1].isOcupado()) {                
+                
+                Carabuco z = new Carabuco(this.cols-1, posFil);
+                
+                this.casillasTablero[posFil][this.cols-1].setOcupado(true);
+                this.casillasTablero[posFil][this.cols-1].setNpc(z);
+                this.lCarabuco.add(z);
                 i = this.fils+99;
             }
             i++;        
@@ -459,6 +534,39 @@ public class Tablero {
                 int posZFil = z.getPosFil();
                 int posZCol = z.getPosCol();
                 if(z.isMoverC() == (this.turno % 2 == 0)) {
+                    if (!this.casillasTablero[posZFil][posZCol-1].isOcupado()) {
+                        this.casillasTablero[posZFil][posZCol-1].setOcupado(true);
+                        this.casillasTablero[posZFil][posZCol-1].setNpc(z);
+                        this.casillasTablero[posZFil][posZCol].setOcupado(false);
+                        z.setPosCol(posZCol-1);
+                    } else if (this.casillasTablero[posZFil][posZCol-1].getNpc() instanceof Planta) {
+                        z.atacar(this.casillasTablero[posZFil][posZCol-1].getNpc());
+                    }
+                } else if (this.casillasTablero[posZFil][posZCol-1].isOcupado() & this.casillasTablero[posZFil][posZCol-1].getNpc() instanceof Planta) {
+                    z.atacar(this.casillasTablero[posZFil][posZCol-1].getNpc());
+                    if(this.casillasTablero[posZFil][posZCol-1].getNpc().getVida() <=0) {
+                        if(this.casillasTablero[posZFil][posZCol-1].getNpc() instanceof LanzaGuisantes) {
+                            this.lLanzaGuisantes.remove(this.casillasTablero[posZFil][posZCol-1].getNpc());
+                        }
+                        this.casillasTablero[posZFil][posZCol-1].setOcupado(false);
+                    }
+                }
+            } 
+        }
+
+    }
+    
+        public void moverCarabucos() {
+        if (this.lCarabuco.size()>=1) {
+            for (Carabuco z : this.lCarabuco) {
+                if (z.getMoverC() == 4) {
+                    z.setMoverC(-4);
+                } else {
+                    z.setMoverC(1);
+                }
+                int posZFil = z.getPosFil();
+                int posZCol = z.getPosCol();
+                if(z.getMoverC() == 4) {
                     if (!this.casillasTablero[posZFil][posZCol-1].isOcupado()) {
                         this.casillasTablero[posZFil][posZCol-1].setOcupado(true);
                         this.casillasTablero[posZFil][posZCol-1].setNpc(z);

@@ -11,13 +11,13 @@ package NPC;
  */
 public class Carabuco extends Enemigo implements EnemigoInterface {
     
-    boolean moverC;
+    int moverC;
     int posCol; 
     int posFil;
     
-    public Carabuco(boolean moverC, int posCol, int posFil) {
+    public Carabuco(int posCol, int posFil) {
         super(7,1,4);
-        this.moverC = moverC;
+        this.moverC = 0;
         this.posFil = posFil;
         this.posCol = posCol;
     }   
@@ -38,14 +38,15 @@ public class Carabuco extends Enemigo implements EnemigoInterface {
         this.posCol = posCol;
     }
 
-    public boolean isMoverC() {
+    public int getMoverC() {
         return moverC;
     }
 
-    public void setMoverC(boolean moverC) {
-        this.moverC = moverC;
+    public void setMoverC(int moverC) {
+        this.moverC += moverC;
     }
-    
+
+
     public void mover() {
         
     }

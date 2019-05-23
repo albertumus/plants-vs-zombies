@@ -6,6 +6,7 @@
 package presentacion;
 
 import JuegoPrincipal.Jugador;
+import java.awt.Color;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class RecuperarCuenta extends javax.swing.JDialog {
     public RecuperarCuenta(java.awt.Frame parent, boolean modal, HashMap<String, Jugador> Registrados) {
         super(parent, modal);
         initComponents();
+        this.getContentPane().setBackground(Color.white);
         this.jugadoresRegistrados = Registrados;
         
         this.setVisible(true);
@@ -50,6 +52,9 @@ public class RecuperarCuenta extends javax.swing.JDialog {
 
         jLabel1.setText("Escribe tu DNI:");
 
+        dniField.setBackground(new java.awt.Color(146, 191, 48));
+
+        jButton1.setBackground(new java.awt.Color(146, 191, 48));
         jButton1.setText("Recuperar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,12 +64,14 @@ public class RecuperarCuenta extends javax.swing.JDialog {
 
         jLabel2.setText("Escribe tu Nombre:");
 
+        userNameField.setBackground(new java.awt.Color(146, 191, 48));
         userNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameFieldActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(146, 191, 48));
         jButton2.setText("Cerrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

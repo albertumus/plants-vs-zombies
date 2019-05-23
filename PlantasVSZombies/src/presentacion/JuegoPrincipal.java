@@ -9,6 +9,7 @@ import JuegoPrincipal.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+import java.util.Arrays;
 
 /**
  *
@@ -25,7 +26,8 @@ public class JuegoPrincipal extends javax.swing.JFrame {
      */
     public JuegoPrincipal(String Dificultad, Jugador j) {
         initComponents();
-                
+        this.getContentPane().setBackground(Color.white);
+        //this.tableroLabel.setVisible(false);
         this.dificultad = Dificultad;
         this.j = j;
         this.userLogged.setText(j.getNombre());
@@ -35,11 +37,10 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         System.out.println(tableroJuego.getDificultad());
         
         // Colocacion de los textos en los labels
-        this.tableroLabel.setText(tableroJuego.pintarTablero());
+       //this.tableroLabel.setText(tableroJuego.pintarTablero());
         this.dificultadLabel.setText(Dificultad);
         this.solesLabel.setText("Soles: " + Integer.toString(tableroJuego.getSoles()));
         this.turnoLabel.setText("Turno: "  + Integer.toString(tableroJuego.getTurno()));
-        
         
         this.setVisible(true);
     }
@@ -56,8 +57,6 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         girasolButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         dificultadLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableroLabel = new javax.swing.JTextArea();
         turnoLabel = new javax.swing.JLabel();
         solesLabel = new javax.swing.JLabel();
         turnoButton = new javax.swing.JButton();
@@ -83,11 +82,50 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         C14 = new javax.swing.JLabel();
         C15 = new javax.swing.JLabel();
         C16 = new javax.swing.JLabel();
+        C20 = new javax.swing.JLabel();
+        C21 = new javax.swing.JLabel();
+        C22 = new javax.swing.JLabel();
+        C23 = new javax.swing.JLabel();
+        C24 = new javax.swing.JLabel();
+        C25 = new javax.swing.JLabel();
+        C26 = new javax.swing.JLabel();
+        C30 = new javax.swing.JLabel();
+        C31 = new javax.swing.JLabel();
+        C32 = new javax.swing.JLabel();
+        C33 = new javax.swing.JLabel();
+        C34 = new javax.swing.JLabel();
+        C35 = new javax.swing.JLabel();
+        C36 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        C40 = new javax.swing.JLabel();
+        C41 = new javax.swing.JLabel();
+        C42 = new javax.swing.JLabel();
+        C43 = new javax.swing.JLabel();
+        C44 = new javax.swing.JLabel();
+        C45 = new javax.swing.JLabel();
+        C46 = new javax.swing.JLabel();
+        C50 = new javax.swing.JLabel();
+        C51 = new javax.swing.JLabel();
+        C52 = new javax.swing.JLabel();
+        C53 = new javax.swing.JLabel();
+        C54 = new javax.swing.JLabel();
+        C55 = new javax.swing.JLabel();
+        C56 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        C60 = new javax.swing.JLabel();
+        C61 = new javax.swing.JLabel();
+        C62 = new javax.swing.JLabel();
+        C63 = new javax.swing.JLabel();
+        C64 = new javax.swing.JLabel();
+        C65 = new javax.swing.JLabel();
+        C66 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(240, 240, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        girasolButton.setBackground(new java.awt.Color(146, 191, 48));
         girasolButton.setText("Colocar Planta");
         girasolButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,20 +137,11 @@ public class JuegoPrincipal extends javax.swing.JFrame {
 
         dificultadLabel.setText("Dificultad");
 
-        tableroLabel.setEditable(false);
-        tableroLabel.setColumns(15);
-        tableroLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tableroLabel.setRows(2);
-        tableroLabel.setTabSize(2);
-        tableroLabel.setFocusable(false);
-        tableroLabel.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(tableroLabel);
-        tableroLabel.getAccessibleContext().setAccessibleDescription("");
-
         turnoLabel.setText("Turno:");
 
         solesLabel.setText("Soles:");
 
+        turnoButton.setBackground(new java.awt.Color(146, 191, 48));
         turnoButton.setText("Siguiente Turno");
         turnoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +149,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        comandosButton.setBackground(new java.awt.Color(146, 191, 48));
         comandosButton.setText("Ayuda");
         comandosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +157,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        salirButton.setBackground(new java.awt.Color(146, 191, 48));
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +172,8 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         C00.setText("C|00");
 
         jLabel5.setBackground(new java.awt.Color(240, 240, 0));
-        jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+        jLabel5.setForeground(new java.awt.Color(176, 150, 123));
+        jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
 
         C1.setText("C|01");
 
@@ -157,13 +189,14 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         C6.setText("C|06");
 
         jLabel11.setBackground(new java.awt.Color(240, 240, 0));
-        jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+        jLabel11.setForeground(new java.awt.Color(176, 150, 123));
+        jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
 
         jLabel12.setBackground(new java.awt.Color(240, 240, 0));
-        jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+        jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
 
         jLabel13.setBackground(new java.awt.Color(240, 240, 0));
-        jLabel13.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+        jLabel13.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
 
         C10.setText("C|10");
 
@@ -179,6 +212,85 @@ public class JuegoPrincipal extends javax.swing.JFrame {
 
         C16.setText("C|16");
 
+        C20.setText("C|20");
+
+        C21.setText("C|21");
+
+        C22.setText("C|22");
+
+        C23.setText("C|23");
+
+        C24.setText("C|24");
+
+        C25.setText("C|25");
+
+        C26.setText("C|25");
+
+        C30.setText("C|30");
+
+        C31.setText("C|31");
+
+        C32.setText("C|32");
+
+        C33.setText("C|33");
+
+        C34.setText("C|34");
+
+        C35.setText("C|35");
+
+        C36.setText("C|36");
+
+        jLabel14.setBackground(new java.awt.Color(240, 240, 0));
+        jLabel14.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
+
+        jLabel15.setBackground(new java.awt.Color(240, 240, 0));
+        jLabel15.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
+
+        C40.setText("C|40");
+
+        C41.setText("C|40");
+
+        C42.setText("C|40");
+
+        C43.setText("C|40");
+
+        C44.setText("C|40");
+
+        C45.setText("C|40");
+
+        C46.setText("C|40");
+
+        C50.setText("C|50");
+
+        C51.setText("C|50");
+
+        C52.setText("C|50");
+
+        C53.setText("C|50");
+
+        C54.setText("C|50");
+
+        C55.setText("C|50");
+
+        C56.setText("C|50");
+
+        jLabel16.setBackground(new java.awt.Color(240, 240, 0));
+        jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
+
+        C60.setText("C|60");
+
+        C61.setText("C|60");
+
+        C62.setText("C|60");
+
+        C63.setText("C|60");
+
+        C64.setText("C|60");
+
+        C65.setText("C|60");
+
+        C66.setText("C|60");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,99 +299,159 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(54, 54, 54))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(C10)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(C11)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(C12)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(C13)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(C14)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(C15)
-                                        .addGap(47, 47, 47)
-                                        .addComponent(C16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(C00)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(turnoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(girasolButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
+                        .addComponent(C60)
+                        .addGap(26, 26, 26)
+                        .addComponent(C61)
+                        .addGap(30, 30, 30)
+                        .addComponent(C62)
+                        .addGap(42, 42, 42)
+                        .addComponent(C63)
+                        .addGap(39, 39, 39)
+                        .addComponent(C64)
+                        .addGap(38, 38, 38)
+                        .addComponent(C65)
+                        .addGap(42, 42, 42)
+                        .addComponent(C66)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(242, 242, 242)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userLogged)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(C1)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(C2)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(C3)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(C4)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(C5)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(C6)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dificultadLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(turnoLabel)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(solesLabel)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(comandosButton)
                                     .addComponent(salirButton))
-                                .addGap(23, 23, 23))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(comandosButton)
-                                .addContainerGap())))))
+                                .addGap(25, 25, 25))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(C30)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(C31)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(C32)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(C33)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(C34)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(C35)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(C36))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(C40)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(C41)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(C42)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(C43)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(C44)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(C45)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(C46))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(242, 242, 242)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(userLogged))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(C50)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(C51)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(C52)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(C53)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(C54)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(C55)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(C56))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(C20)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(C21)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(C22)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(C23)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(C24)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(C25)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(C26))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(C00))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(C1)
+                                                        .addGap(31, 31, 31)
+                                                        .addComponent(C2)
+                                                        .addGap(31, 31, 31)
+                                                        .addComponent(C3)
+                                                        .addGap(33, 33, 33)
+                                                        .addComponent(C4)
+                                                        .addGap(39, 39, 39)
+                                                        .addComponent(C5))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(dificultadLabel)
+                                                        .addGap(97, 97, 97)
+                                                        .addComponent(turnoLabel)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(solesLabel)))
+                                                .addGap(44, 44, 44)
+                                                .addComponent(C6))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(C10)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(C11)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(C12)
+                                                .addGap(33, 33, 33)
+                                                .addComponent(C13)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(C14)
+                                                .addGap(43, 43, 43)
+                                                .addComponent(C15)
+                                                .addGap(40, 40, 40)
+                                                .addComponent(C16)))
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(turnoButton)
+                                            .addComponent(girasolButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 53, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(dificultadLabel)
-                    .addComponent(turnoLabel)
-                    .addComponent(solesLabel))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(turnoButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(girasolButton))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(dificultadLabel)
+                            .addComponent(turnoLabel)
+                            .addComponent(solesLabel))
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(C00)
                             .addComponent(C1)
@@ -289,17 +461,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                             .addComponent(C5)
                             .addComponent(C6))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(salirButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comandosButton)
-                        .addContainerGap(218, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(C10)
@@ -309,16 +471,79 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                             .addComponent(C14)
                             .addComponent(C15)
                             .addComponent(C16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(8, 8, 8)
                         .addComponent(jLabel11)
-                        .addGap(45, 45, 45)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(C20)
+                            .addComponent(C21)
+                            .addComponent(C22)
+                            .addComponent(C23)
+                            .addComponent(C24)
+                            .addComponent(C25)
+                            .addComponent(C26))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
-                        .addGap(43, 43, 43)
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(C30)
+                            .addComponent(C31)
+                            .addComponent(C32)
+                            .addComponent(C33)
+                            .addComponent(C34)
+                            .addComponent(C35)
+                            .addComponent(C36))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(C40)
+                            .addComponent(C41)
+                            .addComponent(C42)
+                            .addComponent(C43)
+                            .addComponent(C44)
+                            .addComponent(C45)
+                            .addComponent(C46))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(C50)
+                            .addComponent(C51)
+                            .addComponent(C52)
+                            .addComponent(C53)
+                            .addComponent(C54)
+                            .addComponent(C55)
+                            .addComponent(C56))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(C60)
+                            .addComponent(C61)
+                            .addComponent(C62)
+                            .addComponent(C63)
+                            .addComponent(C64)
+                            .addComponent(C65)
+                            .addComponent(C66))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(girasolButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(turnoButton)
+                        .addGap(287, 287, 287)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(userLogged)))))
+                            .addComponent(userLogged)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comandosButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(salirButton)
+                        .addGap(24, 24, 24))))
         );
 
         pack();
@@ -327,7 +552,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
     private void girasolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_girasolButtonActionPerformed
         // TODO add your handling code here:
         ColocarPlanta colocarPlanta = new ColocarPlanta(this, true,tableroJuego);
-        tableroLabel.setText(tableroJuego.pintarTablero());
+        //tableroLabel.setText(tableroJuego.pintarTablero());
         pintarTableroIconos();
         
         this.solesLabel.setText("Soles: " + Integer.toString(tableroJuego.getSoles()));
@@ -335,6 +560,9 @@ public class JuegoPrincipal extends javax.swing.JFrame {
 
     private void turnoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turnoButtonActionPerformed
         // TODO add your handling code here:
+            if (tableroJuego.getTurnoCarabucos().contains(tableroJuego.getTurno())) {
+                tableroJuego.instanciarCarabuco();
+            }
         
             boolean saleZombieC = tableroJuego.saleZombie(tableroJuego.getTurnoZombies(), tableroJuego.getTurno());
             int numeroZombiesSalen = tableroJuego.zombiesaInstanciar();
@@ -343,10 +571,8 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                     tableroJuego.instanciarZombie();
                 }   
             }
-            System.out.println("Sale zombie = " + saleZombieC);
-            System.out.println("Numero zombies salen: " + numeroZombiesSalen);
             
-            tableroLabel.setText(tableroJuego.pintarTablero());
+            //tableroLabel.setText(tableroJuego.pintarTablero());
             pintarTableroIconos();
             System.out.println(tableroJuego.pintarTablero());
 
@@ -354,21 +580,22 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             tableroJuego.setSoles(tableroJuego.getnGirasoles()*10);
             tableroJuego.dispararLanzaGuisantes();
             tableroJuego.moverZombies();
+            tableroJuego.moverCarabucos();
             tableroJuego.setPuedeColocarLanzaGuisantes(true);
             tableroJuego.setPuedeColocarGirasol(true);
             tableroJuego.setPuedeColocarNuez(true);
             tableroJuego.setTurno(1);
             
             // Actualizacion de tablero
-            tableroLabel.setText(tableroJuego.pintarTablero());
+//            tableroLabel.setText(tableroJuego.pintarTablero());
             pintarTableroIconos();
             solesLabel.setText("Soles: " + Integer.toString(tableroJuego.getSoles()));
             turnoLabel.setText("Turno: " + String.valueOf(tableroJuego.getTurno()));
             
             // Revisa Acciones de Victoria
-            if(tableroJuego.getnZombies() == tableroJuego.getZombiesMatados() && !tableroJuego.isTerminado()){
+            if(tableroJuego.getnZombies() == tableroJuego.getZombiesMatados() && tableroJuego.getlCarabuco().size() == 0  && !tableroJuego.isTerminado()){
                     tableroJuego.setTerminado(true);
-                    tableroLabel.setText(tableroJuego.pintarTablero());
+   //                 tableroLabel.setText(tableroJuego.pintarTablero());
                     pintarTableroIconos();
                     String mensaje = "¡¡HAN GANADO LAS PLANTAS!!";
                     ResultadoPartida r = new ResultadoPartida(this, true, mensaje, "Victoria", tableroJuego.getSoles(), 
@@ -376,9 +603,9 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                             j);
                     this.dispose();
                 }
-            if(tableroJuego.getlZombie().size() == 0 && tableroJuego.getTurno() > 30 && !tableroJuego.isTerminado()){
+            if(tableroJuego.getlZombie().size() == 0 && tableroJuego.getlCarabuco().size() == 0 && tableroJuego.getTurno() > 30 && !tableroJuego.isTerminado()){
                     tableroJuego.setTerminado(true);
-                    tableroLabel.setText(tableroJuego.pintarTablero());
+//                    tableroLabel.setText(tableroJuego.pintarTablero());
                     pintarTableroIconos();
                     String mensaje = "¡¡HAN GANADO LAS PLANTAS!!";
                     ResultadoPartida r = new ResultadoPartida(this, true, mensaje, "Victoria", tableroJuego.getSoles(), 
@@ -390,7 +617,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             for (Zombie z : tableroJuego.getlZombie() ) {
                 if (z.getPosCol() == 0 && !tableroJuego.isTerminado()) {
                     tableroJuego.setTerminado(true);
-                    tableroLabel.setText(tableroJuego.pintarTablero());
+     //               tableroLabel.setText(tableroJuego.pintarTablero());
                     pintarTableroIconos();
                     String mensaje = "¡¡HAN GANADO LOS ZOMBIES!!";
                     ResultadoPartida r = new ResultadoPartida(this, true, mensaje, "Derrota", tableroJuego.getSoles(), 
@@ -405,17 +632,15 @@ public class JuegoPrincipal extends javax.swing.JFrame {
     private void comandosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandosButtonActionPerformed
         // TODO add your handling code here:
         //ComandosAyuda comandosAyuda = new ComandosAyuda(this,true);
-        String infoBasica = "N <filas> <columnas> <Dificultad>: Nueva partida (Dificultad: BAJA, MEDIA,\n" +
-        "        ALTA, IMPOSIBLE).\n" +
-        "        G <fila> <columna>: colocar girasol. Únicamente se podrá añadir un nuevo\n" +
-        "        Girasol por turno y si tiene el número suficiente de soles. No podrá añadir un\n" +
-        "        Girasol en una casilla ocupada por otra planta o por un zombi.\n" +
-        "        L <fila> <columna>: colocar LanzaGuisantes. Únicamente se podrá añadir un\n" +
-        "        nuevo LanzaGuisantes por turno y si tiene el número suficiente de soles. No\n" +
-        "        podrá añadir un LanzaGuisantes en una casilla ocupada por otra planta o por un\n" +
+        String infoBasica = "->Estas jugando a Plantas VS. Zombies en una dificultad elegida" +
+        "        desde alta a imposible" +
+        "        -> Haz click en colocar planta para colocar una planta a tu elección" +
+        "        -> Puedes colocar una planta de cada clase por turno si tienes soles suficientes\n" +
+        "        -> Los girasoles generan 10 soles por turnoGirasol en una casilla ocupada por otra planta o por un zombi.\n" +
+        "        -> Los lanzaguisantes atacan con 1 punto de daño al zombie del a fila mas cercana" +
+        "        -> Las nueces son un muro, ¡aprovechalos!" +
         "        zombi.\n" +
-        "        S: Salir de la aplicación.\n" +
-        "        <Enter> (Ahora 'E'): Pasar Turno\n";
+        "        -> Siguiente turno para continuar\n";
         JOptionPane.showMessageDialog(this, infoBasica, "Informacion Básica", WIDTH);
     }//GEN-LAST:event_comandosButtonActionPerformed
 
@@ -441,7 +666,45 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         this.C15.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[1][5]));
         this.C16.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[1][6]));
 
-
+        this.C20.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][0]));
+        this.C21.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][1]));
+        this.C22.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][2]));
+        this.C23.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][3]));
+        this.C24.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][4]));
+        this.C25.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][5]));
+        this.C26.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[2][6]));
+        
+        this.C30.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][0]));
+        this.C31.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][1]));
+        this.C32.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][2]));
+        this.C33.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][3]));
+        this.C34.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][4]));
+        this.C35.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][5]));
+        this.C36.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[3][6]));
+        
+        this.C40.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][0]));
+        this.C41.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][1]));
+        this.C42.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][2]));
+        this.C43.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][3]));
+        this.C44.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][4]));
+        this.C45.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][5]));
+        this.C46.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[4][6]));
+        
+        this.C50.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][0]));
+        this.C51.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][1]));
+        this.C52.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][2]));
+        this.C53.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][3]));
+        this.C54.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][4]));
+        this.C55.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][5]));
+        this.C56.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[5][6]));
+        
+        this.C60.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][0]));
+        this.C61.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][1]));
+        this.C62.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][2]));
+        this.C63.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][3]));
+        this.C64.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][4]));
+        this.C65.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][5]));
+        this.C66.setIcon(pintarIconos(tableroJuego.getCasillasTablero()[6][6]));
     }
     
     public ImageIcon pintarIconos(Casilla c) {
@@ -472,8 +735,98 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                 ImageIcon icG = new ImageIcon("./Iconos/" +ruta);
                 return icG;
             } else if(c.getNpc() instanceof Zombie) {
-                ImageIcon icG = new ImageIcon("./Iconos/zombie.jpg");
+                String ruta = "";
+                switch(c.getNpc().getVida()) {
+                    case 0:
+                        ruta = "zombie1.jpg";
+                    break;
+                    case 1:
+                        ruta = "zombie2.jpg";
+                    break;
+                    case 2:
+                        ruta = "zombie3.jpg";
+                    break;
+                    case 3:
+                        ruta = "zombie4.jpg";
+                    break;
+                    case 4:
+                        ruta = "zombie5.jpg";
+                    break;
+                }
+                ImageIcon icG = new ImageIcon("./Iconos/" +ruta);
                 return icG;
+            } else if(c.getNpc() instanceof Nuez) {
+                String ruta = "";
+                switch(c.getNpc().getVida()) {
+                    case 0:
+                        ruta = "nuez1.jpg";
+                    break;
+                    case 1:
+                        ruta = "nuez2.jpg";
+                    break;
+                    case 2:
+                        ruta = "nuez3.jpg";
+                    break;
+                    case 3:
+                        ruta = "nuez4.jpg";
+                    break;
+                    case 4:
+                        ruta = "nuez5.jpg";
+                    break;
+                    case 5:
+                        ruta = "nuez6.jpg";
+                    break;
+                    case 6:
+                        ruta = "nuez7.jpg";
+                    break;
+                    case 7:
+                        ruta = "nuez8.jpg";
+                    break;
+                    case 8:
+                        ruta = "nuez9.jpg";
+                    break;
+                    case 9:
+                        ruta = "nuez10.jpg";
+                    break;
+                }         
+                ImageIcon icG = new ImageIcon("./Iconos/" +ruta);
+                return icG;
+            } else if (c.getNpc() instanceof Carabuco) {
+                String ruta = "";
+                switch(c.getNpc().getVida()) {
+                    case 0:
+                        ruta = "nuez1.jpg";
+                    break;
+                    case 1:
+                        ruta = "nuez2.jpg";
+                    break;
+                    case 2:
+                        ruta = "nuez3.jpg";
+                    break;
+                    case 3:
+                        ruta = "nuez4.jpg";
+                    break;
+                    case 4:
+                        ruta = "nuez5.jpg";
+                    break;
+                    case 5:
+                        ruta = "nuez6.jpg";
+                    break;
+                    case 6:
+                        ruta = "nuez7.jpg";
+                    break;
+                    case 7:
+                        ruta = "nuez8.jpg";
+                    break;
+                    case 8:
+                        ruta = "nuez9.jpg";
+                    break;
+                    case 9:
+                        ruta = "nuez10.jpg";
+                    break;
+                }         
+                ImageIcon icG = new ImageIcon("./Iconos/" +ruta);
+                return icG;    
             }
         }
         
@@ -527,10 +880,45 @@ public class JuegoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel C15;
     private javax.swing.JLabel C16;
     private javax.swing.JLabel C2;
+    private javax.swing.JLabel C20;
+    private javax.swing.JLabel C21;
+    private javax.swing.JLabel C22;
+    private javax.swing.JLabel C23;
+    private javax.swing.JLabel C24;
+    private javax.swing.JLabel C25;
+    private javax.swing.JLabel C26;
     private javax.swing.JLabel C3;
+    private javax.swing.JLabel C30;
+    private javax.swing.JLabel C31;
+    private javax.swing.JLabel C32;
+    private javax.swing.JLabel C33;
+    private javax.swing.JLabel C34;
+    private javax.swing.JLabel C35;
+    private javax.swing.JLabel C36;
     private javax.swing.JLabel C4;
+    private javax.swing.JLabel C40;
+    private javax.swing.JLabel C41;
+    private javax.swing.JLabel C42;
+    private javax.swing.JLabel C43;
+    private javax.swing.JLabel C44;
+    private javax.swing.JLabel C45;
+    private javax.swing.JLabel C46;
     private javax.swing.JLabel C5;
+    private javax.swing.JLabel C50;
+    private javax.swing.JLabel C51;
+    private javax.swing.JLabel C52;
+    private javax.swing.JLabel C53;
+    private javax.swing.JLabel C54;
+    private javax.swing.JLabel C55;
+    private javax.swing.JLabel C56;
     private javax.swing.JLabel C6;
+    private javax.swing.JLabel C60;
+    private javax.swing.JLabel C61;
+    private javax.swing.JLabel C62;
+    private javax.swing.JLabel C63;
+    private javax.swing.JLabel C64;
+    private javax.swing.JLabel C65;
+    private javax.swing.JLabel C66;
     private javax.swing.JButton comandosButton;
     private javax.swing.JLabel dificultadLabel;
     private javax.swing.JButton girasolButton;
@@ -538,12 +926,13 @@ public class JuegoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton salirButton;
     private javax.swing.JLabel solesLabel;
-    private javax.swing.JTextArea tableroLabel;
     private javax.swing.JButton turnoButton;
     private javax.swing.JLabel turnoLabel;
     private javax.swing.JLabel userLogged;

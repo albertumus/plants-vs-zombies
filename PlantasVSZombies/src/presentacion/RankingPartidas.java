@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.awt.Color;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.io.*;
 import java.util.*;
@@ -28,6 +29,7 @@ public class RankingPartidas extends javax.swing.JDialog {
     public RankingPartidas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.getContentPane().setBackground(Color.white);
         this.partidasGanadasFacil = new  ArrayList<String>();
         this.partidasGanadasMedio = new  ArrayList<String>();;
         this.partidasGanadasDificil = new  ArrayList<String>();;
@@ -158,29 +160,34 @@ public class RankingPartidas extends javax.swing.JDialog {
         jLabel4.setText("Top 5 Imposible");
 
         dificilField.setEditable(false);
+        dificilField.setBackground(new java.awt.Color(146, 191, 48));
         dificilField.setColumns(20);
         dificilField.setRows(5);
         dificilField.setAutoscrolls(false);
         jScrollPane1.setViewportView(dificilField);
 
         facilField.setEditable(false);
+        facilField.setBackground(new java.awt.Color(146, 191, 48));
         facilField.setColumns(20);
         facilField.setRows(5);
         facilField.setAutoscrolls(false);
         jScrollPane2.setViewportView(facilField);
 
         medioField.setEditable(false);
+        medioField.setBackground(new java.awt.Color(146, 191, 48));
         medioField.setColumns(20);
         medioField.setRows(5);
         medioField.setAutoscrolls(false);
         jScrollPane3.setViewportView(medioField);
 
         imposibleField.setEditable(false);
+        imposibleField.setBackground(new java.awt.Color(146, 191, 48));
         imposibleField.setColumns(20);
         imposibleField.setRows(5);
         imposibleField.setAutoscrolls(false);
         jScrollPane4.setViewportView(imposibleField);
 
+        salirButton.setBackground(new java.awt.Color(146, 191, 48));
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

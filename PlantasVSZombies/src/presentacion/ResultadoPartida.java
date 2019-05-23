@@ -6,6 +6,7 @@
 package presentacion;
 import java.io.*;
 import JuegoPrincipal.Jugador;
+import java.awt.Color;
 /**
  *
  * @author admin
@@ -27,7 +28,7 @@ public class ResultadoPartida extends javax.swing.JDialog {
             int ngirasoles, int numeroLanzaGuisantes, String dificultad, Jugador j) {
         super(parent, modal);
         initComponents();
-        
+        this.getContentPane().setBackground(Color.white);
         this.mensaje = mensaje;
         this.j = j;
         this.resultado = resultado;
@@ -41,13 +42,49 @@ public class ResultadoPartida extends javax.swing.JDialog {
         if (resultado.equals("Victoria")) {
             puntuacion = soles + ngirasoles*20 + numeroLanzaGuisantes*50;
             puntuacionLabel.setText("Puntuacion: "  + puntuacion);
-           
+            
             añadirPuntuacion(puntuacion, dificultad);
-        } 
+            
+            j.setPartidasGanadas(1);
+            switch(dificultad) {
+                case "facil":
+                    j.getPartidasGanadasFacil().add(puntuacion);
+                    break;
+                case "media":
+                    j.getPartidasGanadasMedio().add(puntuacion);
+                    break;
+                case "dificil":
+                    j.getPartidasGanadasDificil().add(puntuacion);
+                    break;
+                case "imposible":
+                    j.getPartidasGanadasImposible().add(puntuacion);
+                    break;
+            }
+            
+        } else {
+            j.setPartidasPerdidas(1);
+        }
+        
+        j.setPartidasJugadas(1);
+        guardarRegistro(j);
         
         this.setVisible(true);
     }
-    
+        public void guardarRegistro(Jugador j) {
+        
+        String rutaArchivo = "./Jugadores/" + j.getNombre();
+        
+        try {
+            FileOutputStream fileOut = new FileOutputStream(rutaArchivo);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(j);
+            objectOut.close();
+ 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+        
     public void añadirPuntuacion(int Puntuacion, String dificultad) {
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -89,6 +126,7 @@ public class ResultadoPartida extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        salirPartida.setBackground(new java.awt.Color(146, 191, 48));
         salirPartida.setText("Salir");
         salirPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

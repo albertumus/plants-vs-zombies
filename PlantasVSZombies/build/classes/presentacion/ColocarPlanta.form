@@ -81,6 +81,9 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="plantasList">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="30" green="bf" red="92" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="Girasol"/>
@@ -98,6 +101,9 @@
     </Container>
     <Component class="javax.swing.JTextField" name="fila">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="30" green="bf" red="92" type="rgb"/>
+        </Property>
         <Property name="columns" type="int" value="3"/>
       </Properties>
       <Events>
@@ -106,6 +112,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="columna">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="30" green="bf" red="92" type="rgb"/>
+        </Property>
         <Property name="columns" type="int" value="3"/>
       </Properties>
       <Events>
@@ -124,6 +133,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="colocarButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="30" green="bf" red="92" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Colocar"/>
       </Properties>
       <Events>

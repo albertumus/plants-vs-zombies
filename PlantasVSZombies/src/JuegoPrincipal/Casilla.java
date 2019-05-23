@@ -52,7 +52,9 @@ public class Casilla {
                 casillaString = String.format("G(%d)|", this.npc.getVida()+1);
             } else if (this.npc instanceof Nuez) {
                 casillaString = String.format("N(%d)|", this.npc.getVida()+1);
-            } else {
+            } else if (this.npc instanceof Carabuco) { 
+                casillaString = String.format("C(%d)|", this.npc.getVida()+1);
+            }else {
                 casillaString = "O()|";
             }
         }

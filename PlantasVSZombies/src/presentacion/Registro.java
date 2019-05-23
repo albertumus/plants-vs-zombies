@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 import JuegoPrincipal.*;
+import java.awt.Color;
 import java.util.HashMap;
 /**
  *
@@ -24,6 +25,7 @@ public class Registro extends javax.swing.JDialog {
     public Registro(java.awt.Frame parent, boolean modal, HashMap<String, Jugador> Registrados ) {
         super(parent, modal);
         initComponents();
+        this.getContentPane().setBackground(Color.white);
         this.jugadoresRegistrados = Registrados;
         
         
@@ -55,12 +57,16 @@ public class Registro extends javax.swing.JDialog {
 
         jLabel2.setText("Introduce tu DNI:");
 
+        userNameInput.setBackground(new java.awt.Color(146, 191, 48));
         userNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameInputActionPerformed(evt);
             }
         });
 
+        dniInput.setBackground(new java.awt.Color(146, 191, 48));
+
+        jButton1.setBackground(new java.awt.Color(146, 191, 48));
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +74,7 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
+        registroButton.setBackground(new java.awt.Color(146, 191, 48));
         registroButton.setText("Registrarse");
         registroButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +84,7 @@ public class Registro extends javax.swing.JDialog {
 
         jLabel3.setText("Contraseña: ");
 
+        contraseñaInput.setBackground(new java.awt.Color(146, 191, 48));
         contraseñaInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contraseñaInputActionPerformed(evt);
