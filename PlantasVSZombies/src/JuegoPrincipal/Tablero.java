@@ -389,20 +389,16 @@ public class Tablero {
                     } else {
                         this.lZombie.remove(this.casillasTablero[fila][posCol].getNpc());
                         this.ZombiesMatados += 1;
-                        System.out.println("Has madado un zombie");
-                        System.out.println(this.ZombiesMatados);
                         this.casillasTablero[fila][posCol].setOcupado(false); 
                         this.casillasTablero[fila][posCol].setNpc(null);                
                     }
                     
                     enc = true;
                 } else if (this.casillasTablero[fila][posCol].isOcupado() & this.casillasTablero[fila][posCol].getNpc() instanceof Carabuco){
-                    System.out.println("carabuco encontrado");
                     if (this.casillasTablero[fila][posCol].getNpc().getVida() > 0) {
                         this.casillasTablero[fila][posCol].getNpc().setVida(-1);   
                     } else {
                         this.lCarabuco.remove(this.casillasTablero[fila][posCol].getNpc());
-                        System.out.println("Has madado un Carabuco");
                         this.casillasTablero[fila][posCol].setOcupado(false); 
                         this.casillasTablero[fila][posCol].setNpc(null);                
                     }

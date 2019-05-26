@@ -33,8 +33,6 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         this.userLogged.setText(j.getNombre());
         // Creacion de un nuevo tablero
         this.tableroJuego = new Tablero(dificultad.toLowerCase());
-        System.out.println(tableroJuego.getTurnoInificialZombies());
-        System.out.println(tableroJuego.getDificultad());
         
         // Colocacion de los textos en los labels
        //this.tableroLabel.setText(tableroJuego.pintarTablero());
@@ -248,48 +246,48 @@ public class JuegoPrincipal extends javax.swing.JFrame {
 
         C40.setText("C|40");
 
-        C41.setText("C|40");
+        C41.setText("C|41");
 
-        C42.setText("C|40");
+        C42.setText("C|42");
 
-        C43.setText("C|40");
+        C43.setText("C|43");
 
-        C44.setText("C|40");
+        C44.setText("C|44");
 
-        C45.setText("C|40");
+        C45.setText("C|45");
 
-        C46.setText("C|40");
+        C46.setText("C|46");
 
         C50.setText("C|50");
 
-        C51.setText("C|50");
+        C51.setText("C|51");
 
-        C52.setText("C|50");
+        C52.setText("C|52");
 
-        C53.setText("C|50");
+        C53.setText("C|53");
 
-        C54.setText("C|50");
+        C54.setText("C|54");
 
-        C55.setText("C|50");
+        C55.setText("C|55");
 
-        C56.setText("C|50");
+        C56.setText("C|56");
 
         jLabel16.setBackground(new java.awt.Color(240, 240, 0));
         jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(176, 150, 123)));
 
         C60.setText("C|60");
 
-        C61.setText("C|60");
+        C61.setText("C|61");
 
-        C62.setText("C|60");
+        C62.setText("C|62");
 
-        C63.setText("C|60");
+        C63.setText("C|63");
 
-        C64.setText("C|60");
+        C64.setText("C|64");
 
-        C65.setText("C|60");
+        C65.setText("C|65");
 
-        C66.setText("C|60");
+        C66.setText("C|66");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -316,129 +314,127 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(comandosButton)
-                                    .addComponent(salirButton))
-                                .addGap(25, 25, 25))
+                                .addComponent(C30)
+                                .addGap(27, 27, 27)
+                                .addComponent(C31)
+                                .addGap(35, 35, 35)
+                                .addComponent(C32)
+                                .addGap(39, 39, 39)
+                                .addComponent(C33)
+                                .addGap(36, 36, 36)
+                                .addComponent(C34)
+                                .addGap(38, 38, 38)
+                                .addComponent(C35)
+                                .addGap(44, 44, 44)
+                                .addComponent(C36))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(C40)
+                                .addGap(26, 26, 26)
+                                .addComponent(C41)
+                                .addGap(28, 28, 28)
+                                .addComponent(C42)
+                                .addGap(43, 43, 43)
+                                .addComponent(C43)
+                                .addGap(38, 38, 38)
+                                .addComponent(C44)
+                                .addGap(40, 40, 40)
+                                .addComponent(C45)
+                                .addGap(42, 42, 42)
+                                .addComponent(C46))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(242, 242, 242)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(userLogged))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(C50)
+                                .addGap(34, 34, 34)
+                                .addComponent(C51)
+                                .addGap(26, 26, 26)
+                                .addComponent(C52)
+                                .addGap(40, 40, 40)
+                                .addComponent(C53)
+                                .addGap(39, 39, 39)
+                                .addComponent(C54)
+                                .addGap(39, 39, 39)
+                                .addComponent(C55)
+                                .addGap(41, 41, 41)
+                                .addComponent(C56))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(C20)
+                                .addGap(33, 33, 33)
+                                .addComponent(C21)
+                                .addGap(32, 32, 32)
+                                .addComponent(C22)
+                                .addGap(37, 37, 37)
+                                .addComponent(C23)
+                                .addGap(36, 36, 36)
+                                .addComponent(C24)
+                                .addGap(40, 40, 40)
+                                .addComponent(C25)
+                                .addGap(41, 41, 41)
+                                .addComponent(C26)))
+                        .addContainerGap(387, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(salirButton)
+                            .addComponent(comandosButton))
+                        .addGap(51, 51, 51))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(C00))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(C30)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(C31)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(C32)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(C33)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(C34)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(C35)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(C36))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(C40)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(C41)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(C42)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(C43)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(C44)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(C45)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(C46))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(242, 242, 242)
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(userLogged))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(C50)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(C51)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(C52)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(C53)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(C54)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(C55)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(C56))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(C20)
+                                        .addComponent(C1)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(C2)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(C3)
                                         .addGap(33, 33, 33)
-                                        .addComponent(C21)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(C22)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(C23)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(C24)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(C25)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(C26))
+                                        .addComponent(C4)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(C5))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(2, 2, 2)
-                                                .addComponent(C00))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(C1)
-                                                        .addGap(31, 31, 31)
-                                                        .addComponent(C2)
-                                                        .addGap(31, 31, 31)
-                                                        .addComponent(C3)
-                                                        .addGap(33, 33, 33)
-                                                        .addComponent(C4)
-                                                        .addGap(39, 39, 39)
-                                                        .addComponent(C5))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(dificultadLabel)
-                                                        .addGap(97, 97, 97)
-                                                        .addComponent(turnoLabel)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(solesLabel)))
-                                                .addGap(44, 44, 44)
-                                                .addComponent(C6))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(C10)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(C11)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(C12)
-                                                .addGap(33, 33, 33)
-                                                .addComponent(C13)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(C14)
-                                                .addGap(43, 43, 43)
-                                                .addComponent(C15)
-                                                .addGap(40, 40, 40)
-                                                .addComponent(C16)))
-                                        .addGap(36, 36, 36)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(turnoButton)
-                                            .addComponent(girasolButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 53, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                        .addComponent(dificultadLabel)
+                                        .addGap(97, 97, 97)
+                                        .addComponent(turnoLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(solesLabel)))
+                                .addGap(44, 44, 44)
+                                .addComponent(C6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(C10)
+                                .addGap(35, 35, 35)
+                                .addComponent(C11)
+                                .addGap(35, 35, 35)
+                                .addComponent(C12)
+                                .addGap(33, 33, 33)
+                                .addComponent(C13)
+                                .addGap(35, 35, 35)
+                                .addComponent(C14)
+                                .addGap(43, 43, 43)
+                                .addComponent(C15)
+                                .addGap(40, 40, 40)
+                                .addComponent(C16)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(girasolButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(turnoButton))
+                        .addGap(64, 64, 64))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,24 +522,21 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                             .addComponent(C64)
                             .addComponent(C65)
                             .addComponent(C66))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(girasolButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(turnoButton)
-                        .addGap(287, 287, 287)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(userLogged)))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(girasolButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(turnoButton)
+                        .addGap(244, 244, 244)
                         .addComponent(comandosButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(salirButton)
-                        .addGap(24, 24, 24))))
+                        .addGap(200, 200, 200))))
         );
 
         pack();
@@ -574,7 +567,6 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             
             //tableroLabel.setText(tableroJuego.pintarTablero());
             pintarTableroIconos();
-            System.out.println(tableroJuego.pintarTablero());
 
             // Acciones Repetitivas
             tableroJuego.setSoles(tableroJuego.getnGirasoles()*10);
@@ -795,34 +787,28 @@ public class JuegoPrincipal extends javax.swing.JFrame {
                 String ruta = "";
                 switch(c.getNpc().getVida()) {
                     case 0:
-                        ruta = "nuez1.jpg";
+                        ruta = "carabuco1.jpg";
                     break;
                     case 1:
-                        ruta = "nuez2.jpg";
+                        ruta = "carabuco2.jpg";
                     break;
                     case 2:
-                        ruta = "nuez3.jpg";
+                        ruta = "carabuco3.jpg";
                     break;
                     case 3:
-                        ruta = "nuez4.jpg";
+                        ruta = "carabuco4.jpg";
                     break;
                     case 4:
-                        ruta = "nuez5.jpg";
+                        ruta = "carabuco5.jpg";
                     break;
                     case 5:
-                        ruta = "nuez6.jpg";
+                        ruta = "carabuco6.jpg";
                     break;
                     case 6:
-                        ruta = "nuez7.jpg";
+                        ruta = "carabuco7.jpg";
                     break;
                     case 7:
-                        ruta = "nuez8.jpg";
-                    break;
-                    case 8:
-                        ruta = "nuez9.jpg";
-                    break;
-                    case 9:
-                        ruta = "nuez10.jpg";
+                        ruta = "carabuco8.jpg";
                     break;
                 }         
                 ImageIcon icG = new ImageIcon("./Iconos/" +ruta);
